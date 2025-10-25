@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineMatch | Discover Movies You’ll Love</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    /* ---------- Global Styles ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d0d0f;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    /* ---------- Navbar ---------- */
+    header {
+      background: #121216;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #ff4655;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ff4655;
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                  url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #ddd;
+    }
+
+    .search-bar {
+      display: flex;
+      width: 100%;
+      max-width: 500px;
+      background: #1c1c22;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: none;
+      background: none;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .search-bar button {
+      background: #ff4655;
+      border: none;
+      color: #fff;
+      padding: 0 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background: #e63b4a;
+    }
+
+    /* ---------- Featured Movies ---------- */
+    section.featured {
+      padding: 4rem 2rem;
+    }
+
+    section.featured h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #ff4655;
+    }
+
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .movie-card {
+      background: #1c1c22;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(255, 70, 85, 0.3);
+    }
+
+    .movie-info {
+      padding: 1rem;
+    }
+
+    .movie-info h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .rating {
+      color: gold;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Recommendation Button ---------- */
+    .recommend-btn {
+      display: block;
+      margin: 3rem auto 0;
+      background: #ff4655;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .recommend-btn:hover {
+      background: #e63b4a;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: #121216;
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    footer .socials {
+      margin-bottom: 0.8rem;
+    }
+
+    footer .socials a {
+      color: #ff4655;
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    footer .socials a:hover {
+      color: #fff;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header>
+    <div class="logo">CineMatch</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Movies</a></li>
+        <li><a href="#">Genres</a></li>
+        <li><a href="#">Login/Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Discover Movies You’ll Love</h1>
+    <p>Personalized recommendations, trending hits, and hidden gems.</p>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for a movie..." id="searchInput">
+      <button><i class="fas fa-search"></i></button>
+    </div>
+  </section>
+
+  <!-- Featured Movies -->
+  <section class="featured">
+    <h2>Featured Movies</h2>
+    <div class="movie-grid" id="movieGrid">
+      <!-- Movie cards will be added dynamically here -->
+    </div>
+    <button class="recommend-btn">Get Recommendations</button>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="socials">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2025 CineMatch. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // ---------- Sample Static Movie Data ----------
+    const movies = [
+      { title: "Inception", rating: 8.8, poster: "https://m.media-amazon.com/images/I/81p+xe8cbnL._AC_SY679_.jpg" },
+      { title: "Interstellar", rating: 8.6, poster: "https://m.media-amazon.com/images/I/71n58sO2ZDL._AC_SY679_.jpg" },
+      { title: "The Dark Knight", rating: 9.0, poster: "https://m.media-amazon.com/images/I/71pox3c1iFL._AC_SY679_.jpg" },
+      { title: "Avengers: Endgame", rating: 8.4, poster: "https://m.media-amazon.com/images/I/81ExhpBEbHL._AC_SY679_.jpg" },
+      { title: "Parasite", rating: 8.6, poster: "https://m.media-amazon.com/images/I/91jNRSgDprL._AC_SY679_.jpg" },
+      { title: "Joker", rating: 8.5, poster: "https://m.media-amazon.com/images/I/71A9WRSgswL._AC_SY679_.jpg" }
+    ];
+
+    const movieGrid = document.getElementById("movieGrid");
+
+    // Dynamically create movie cards
+    movies.forEach(movie => {
+      const card = document.createElement("div");
+      card.classList.add("movie-card");
+      card.innerHTML = `
+        <img src="${movie.poster}" alt="${movie.title}">
+        <div class="movie-info">
+          <h3>${movie.title}</h3>
+          <p class="rating"><i class="fas fa-star"></i> ${movie.rating}</p>
+        </div>
+      `;
+      movieGrid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
